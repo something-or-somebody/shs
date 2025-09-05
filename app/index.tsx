@@ -21,7 +21,7 @@ if ("serviceWorker" in navigator && !/localhost/.test(window.location.toString()
 export const queryClient = new QueryClient;
 
 export type Page = { default: ElementType, path: string, caseSensitive?: boolean };
-const pages = import.meta.globEager<Page>("./src/pages/*.tsx");
+const pages = import.meta.globEager("./src/pages/*.tsx") as Record<string, Page>;
 
 // Log SHS GAMES!!
 console.log(" _______           _______    _______  _______  _______  _______  _______ \n(  ____ \\|\\     /|(  ____ \\  (  ____ \\(  ___  )(       )(  ____ \\(  ____ \\\n| (    \\/| )   ( || (    \\/  | (    \\/| (   ) || () () || (    \\/| (    \\/\n| (_____ | (___) || (_____   | |      | (___) || || || || (__    | (_____ \n(_____  )|  ___  |(_____  )  | | ____ |  ___  || |(_)| ||  __)   (_____  )\n      ) || (   ) |      ) |  | | \\_  )| (   ) || |   | || (            ) |\n/\\____) || )   ( |/\\____) |  | (___) || )   ( || )   ( || (____/\\/\\____) |\n\\_______)|/     \\|\\_______)  (_______)|/     \\||/     \\|(_______/\\_______)");
