@@ -11,62 +11,62 @@ config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [
-		react(),
-		VitePWA({
-			srcDir: "app",
-			registerType: "autoUpdate",
-			scope: base,
-			manifest: <unknown>manifest,
-			workbox: {
-				globIgnores: [
-					"**/IodineGBA/index.html",
-					"**/node_modules/**/*"
-				]
-			}
-		}),
-		htmlPlugin({
-			metas: [ {
-				name: "description",
-				content: manifest.description
-    		}, {
-				name: "theme-color",
-				content: manifest.theme_color
-			}, {
-				name: "og:image",
-				content: "/banner.png"
-			} ],
-			links: [ {
-				rel: "apple-touch-icon",
-				href: "/apple_touch_icon.png"
-			} ]
-		})
-	],
-	base,
-	define: {
-		"PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production",
-		"APP_MANIFEST": {
-			name: manifest.name,
-			version: pjson.version,
-			description: manifest.description,
-			author: pjson.author
-		}
-	},
-	root: "app",
-	server: {
-		port: 8080,
-		hmr: {
-			protocol: "ws",
-			host: "localhost"
-		}
-	},
-	build: {
-		outDir: "../public_html"
-	},
-	resolve: {
-		alias: {
-			"styles": path.resolve(__dirname, "./app/styles"),
-			"pages": path.resolve(__dirname, "./app/pages")
-		}
-	}
+  plugins: [
+    react(),
+    VitePWA({
+      srcDir: "app",
+      registerType: "autoUpdate",
+      scope: base,
+      manifest: <unknown>manifest,
+      workbox: {
+        globIgnores: [
+          "**/IodineGBA/index.html",
+          "**/node_modules/**/*"
+        ]
+      }
+    }),
+    htmlPlugin({
+      metas: [{
+        name: "description",
+        content: manifest.description
+      }, {
+        name: "theme-color",
+        content: manifest.theme_color
+      }, {
+        name: "og:image",
+        content: "/banner.png"
+      }],
+      links: [{
+        rel: "apple-touch-icon",
+        href: "/apple_touch_icon.png"
+      }]
+    })
+  ],
+  base,
+  define: {
+    "PRODUCTION": process.env.NODE_ENV?.toLowerCase() === "production",
+    "APP_MANIFEST": {
+      name: manifest.name,
+      version: pjson.version,
+      description: manifest.description,
+      author: pjson.author
+    }
+  },
+  root: "app",
+  server: {
+    port: 8080,
+    hmr: {
+      protocol: "ws",
+      host: "localhost"
+    }
+  },
+  build: {
+    outDir: "dist",
+  },
+  resolve: {
+    alias: {
+      "styles": path.resolve(__dirname, "./app/styles"),
+      "pages": path.resolve(__dirname, "./app/pages")
+    }
+  }
 });
